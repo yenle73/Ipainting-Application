@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Inpainting Application</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body style="margin: 0">
+    <div id="toolbar">
+        <div id="rad">
+            Radius <span id="radval">20</span>
+            <button id="incrad" >+</button>
+            <button id="decrad" >-</button>
+        </div>
+
+        <button id="undoButton" onclick="undo()"> Undo</button>
+
+        <button id="clearButton" onclick="clearCanvas()">Clear Canvas</button>
+
+    </div>  
+    <canvas  id="canvas" style="display: block; border: 1px solid black;"></canvas>
+
+
+    <form method="post" action="/generate-image" id="uploadForm" enctype="multipart/form-data">
+        <label for="content" class="file-input-label">Choose an image:</label>
+        <input type="file" id="fileInput" name="fileInput" accept="image/*" required>
+        <button type="button" id="loadButton" onclick="loadImage()">Tải Ảnh</button>
+        <input type="hidden" id="canvasContent" name="canvasContent" value="">
+        <input type="hidden" id="pointsInput" name="pointsInput" value="">
+        <br>
+        <button type="submit" onclick="SubmitForm()">Generate</button>
+        <br>
+    </form>
+
+
+
+    {% if result_path and upload_path %}
+        <hr>
+        <h2 style="text-align: center;">Result</h2>
+        
+        <div class="result-box">
+            <div class="image-container">
+                <div class="image-wrapper">
+                    <h3 style="color: #00a013; text-align: center;">Uploaded Image</h3>
+                    <img src="{{ upload_path }}" alt="Uploaded Image" style="max-width: 100%; border-radius: 8px;">
+                </div>
+
+                <div class="image-wrapper">
+                    <h3 style="color: #00a013; text-align: center;">Result Image</h3>
+                    <img src="{{ result_path }}" alt="Result Image" style="max-width: 100%; border-radius: 8px;">
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+    
+
+    <script src="/static/canvas.js"></script>
+
+
+
+    
+</body>
+</html>
