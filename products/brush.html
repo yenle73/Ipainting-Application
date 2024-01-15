@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Object from Photos</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="bg-color-primary text-color-white tracking-wider">
+    <header>
+        <nav class="container flex justify-between items-center">
+            <div class="py-5 text-color-secondary font-bond text-3xl">
+                <a href="#home">
+                    <span class="text-color-white">Remove</span>Object
+                </a>
+            </div>
+            <div>
+                <ul class="hidden lg:flex items-center space-x-6">
+                    <li><a href="#home" class="hover:text-color-secondary ease-in duration-200">Home</a></li>
+                    <li><a href="#tutorial" class="hover:text-color-secondary mr-64 ease-in duration-200">Tutorial</a></li>
+                
+                    <li><a href="/products/brush.html"><button class="bg-color-secondary px-9 py-3 rounded-md capitalize font-bold hover:opacity-80 ease-in duration-200">Brush</button></a></li>
+                    <li><button class="bg-color-white text-color-secondary px-9 py-3 rounded-md capitalize font-bold hover:opacity-80 ease-in duration-200">Auto</button></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container py-20">
+            <div class="flex flex-col items-center z-20 md:flex-row">
+
+                <!-- cot 1 -->
+                <div class="text-center mb-12 md:text-left md:w-1/2 md:pr-10">
+                    <h1 class="title mb-4">Remove Object by Brush</h1>
+
+                    <form method="post" action="/generate-image" id="uploadForm" enctype="multipart/form-data">
+                        <label for="content" class="file-input-label">Choose an image:</label>
+                        <input type="file" id="fileInput" name="fileInput" accept="image/*" required>
+                        <button class="btn" type="button" id="loadButton" onclick="loadImage()">Load Image</button>
+                        <input type="hidden" id="canvasContent" name="canvasContent" value="">
+                        <input type="hidden" id="pointsInput" name="pointsInput" value="">
+                        <br>
+                        <button class="btn" type="submit" onclick="SubmitForm()">Generate</button>
+                        <br>
+                    </form>
+
+                    <div id="toolbar">
+                        <div id="rad">
+                            Radius
+                            <button class="btn" id="incrad" >+</button>
+                            <span id="radval">20</span>
+                            <button class="btn" id="decrad" >-</button>
+                        </div>
+                
+                        <button class="btn" id="undoButton" onclick="undo()"> Undo</button>
+                
+                        <button class="btn" id="clearButton" onclick="clearCanvas()">Clear Canvas</button>
+                
+                    </div>  
+
+                </div>
+
+                <!-- cot 2-->
+                <div class="md:w-1/2">
+                    <canvas  id="canvas" style="display: block; border: 1px solid black;"></canvas>
+                    <div class="result-box">
+                        <div class="image-container">
+                            <div class="image-wrapper">
+                                <h3 style="color: #00a013; text-align: center;">Uploaded Image</h3>
+                                <img src="{{ upload_path }}" alt="Uploaded Image" style="max-width: 100%; border-radius: 8px;">
+                            </div>
+            
+                            <div class="image-wrapper">
+                                <h3 style="color: #00a013; text-align: center;">Result Image</h3>
+                                <img src="{{ result_path }}" alt="Result Image" style="max-width: 100%; border-radius: 8px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    
+    <script src="/static/canvas.js"></script>
+    
+</body>
+</html>
