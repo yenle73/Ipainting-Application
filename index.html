@@ -3,63 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Inpainting Application</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <title>Remove Object from Photos</title>
+    <link rel="stylesheet" href="products/css/main.css">
 </head>
-<body style="margin: 0">
-    <div id="toolbar">
-        <div id="rad">
-            Radius <span id="radval">20</span>
-            <button id="incrad" >+</button>
-            <button id="decrad" >-</button>
-        </div>
+<body class="bg-color-primary text-color-white tracking-wider">
+    <header>
+        <nav class="container flex justify-between items-center">
+            <div class="py-5 text-color-secondary font-bond text-3xl">
+                <a href="#home">
+                    <span class="text-color-white">Remove</span>Object
+                </a>
+            </div>
+            <div>
+                <ul class="hidden lg:flex items-center space-x-6">
+                    <li><a href="#home" class="hover:text-color-secondary ease-in duration-200">Home</a></li>
+                    <li><a href="#tutorial" class="hover:text-color-secondary mr-64 ease-in duration-200">Tutorial</a></li>
+                
+                    <li><a href="/products/brush.html"><button class="bg-color-secondary px-9 py-3 rounded-md capitalize font-bold hover:opacity-80 ease-in duration-200">Brush</button></a></li>
+                    <li><button class="bg-color-white text-color-secondary px-9 py-3 rounded-md capitalize font-bold hover:opacity-80 ease-in duration-200">Auto</button></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
 
-        <button id="undoButton" onclick="undo()"> Undo</button>
+    <main>
+        <section id="#home" class="relative">
+            <div class="blob1"></div>
+            <div class="blob2"></div>
+            <div class="container py-20">
+                <div class="flex flex-col items-center z-20 md:flex-row">
+                    <div class="text-center mb-12 md:text-left md:w-1/2 md:pr-10">
+                        <h1 class="title mb-4">Remove Object</h1>
+                        <h1 class="title mb-4">from Photos</h1>
+                        <p class="leading-relaxed mb-10">Remove people, remove objects from photo faster with AI technology</p>
+                        <button class="btn">Start</button>
+                    </div>
 
-        <button id="clearButton" onclick="clearCanvas()">Clear Canvas</button>
-
-    </div>  
-    <canvas  id="canvas" style="display: block; border: 1px solid black;"></canvas>
-
-
-    <form method="post" action="/generate-image" id="uploadForm" enctype="multipart/form-data">
-        <label for="content" class="file-input-label">Choose an image:</label>
-        <input type="file" id="fileInput" name="fileInput" accept="image/*" required>
-        <button type="button" id="loadButton" onclick="loadImage()">Tải Ảnh</button>
-        <input type="hidden" id="canvasContent" name="canvasContent" value="">
-        <input type="hidden" id="pointsInput" name="pointsInput" value="">
-        <br>
-        <button type="submit" onclick="SubmitForm()">Generate</button>
-        <br>
-    </form>
-
-
-
-    {% if result_path and upload_path %}
-        <hr>
-        <h2 style="text-align: center;">Result</h2>
-        
-        <div class="result-box">
-            <div class="image-container">
-                <div class="image-wrapper">
-                    <h3 style="color: #00a013; text-align: center;">Uploaded Image</h3>
-                    <img src="{{ upload_path }}" alt="Uploaded Image" style="max-width: 100%; border-radius: 8px;">
-                </div>
-
-                <div class="image-wrapper">
-                    <h3 style="color: #00a013; text-align: center;">Result Image</h3>
-                    <img src="{{ result_path }}" alt="Result Image" style="max-width: 100%; border-radius: 8px;">
+                    <div class="md:w-1/2">
+                        <img src="./img/fig1.jpg" alt="">
+                    </div>
                 </div>
             </div>
-        </div>
-        {% endif %}
+        </section>
+        
+        <section id="tutorial" class="bg-color-primary-light">
+            <div class="container py-20">
+                <div class="text-center m-auto mb-20 md:w-1/2 align-super">
+                    <h1 class="title">How to Edit Photo?</h1>
+                    <h4>There are only 4 simple steps to remove object from photo, clean up picture, and create beautiful images like a professional photographer.</h4>    
+                </div>
 
-    
+                <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-12 lg:gap-8 px-4 sm:px-6 lg:px-8">
+                    
+                    <div class="border-2 border-solid border-color-gray text-center py-20 px-5 rounded-2xl">
+                        <div class="bg-color-secondary inline-block rounded-2xl py-5 px-6 text-2xl">1</div>
+                        <h3 class="text-xl font-bold py-4">Upload picture to clean up</h3>
+                    </div>
 
-    <script src="/static/canvas.js"></script>
+                    <div class="border-2 border-solid border-color-gray text-center py-20 px-5 rounded-2xl">
+                        <div class="bg-color-secondary inline-block rounded-2xl py-5 px-6 text-2xl">2</div>
+                        <h3 class="text-xl font-bold py-4">Select feature to edit image</h3>
+                    </div>
 
+                    <div class="border-2 border-solid border-color-gray text-center py-20 px-5 rounded-2xl">
+                        <div class="bg-color-secondary inline-block rounded-2xl py-5 px-6 text-2xl">3</div>
+                        <h3 class="text-xl font-bold py-4">Adjust and preview</h3>
+                    </div>
 
-
+                    <div class="border-2 border-solid border-color-gray text-center py-20 px-5 rounded-2xl">
+                        <div class="bg-color-secondary inline-block rounded-2xl py-5 px-6 text-2xl">4</div>
+                        <h3 class="text-xl font-bold py-4">Download & share</h3>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+    </main>
     
 </body>
 </html>
